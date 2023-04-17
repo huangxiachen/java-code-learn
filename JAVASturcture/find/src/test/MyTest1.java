@@ -1,18 +1,15 @@
 package test;
+import function.binary.BinarySearch;
 
-import function.BinarySearch;
-import org.junit.Test;
-
-import javax.swing.*;
 import java.util.Scanner;
 
 /**
  * @description://TODO
- * @author: Luck_chen
+ * @author: Luck_chen]
  * @date: 2023/4/10 12:17
  * @Version 1.0.0.0
  */
-public class MyTest {
+public class MyTest1 {
     public static void main(String[] args) {
 //        二分查找法
         binaryTest();

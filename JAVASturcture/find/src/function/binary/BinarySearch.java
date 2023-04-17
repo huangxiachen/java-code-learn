@@ -1,4 +1,4 @@
-package function;
+package function.binary;
 
 /**
  * @description:二分查找法
