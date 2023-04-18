@@ -99,8 +99,11 @@ public class ArrayBag<T> implements BagInterface<T> {
         return result;
     }
 
+
+
     @Override
     public boolean remove(T anEntry) {
+
         return false;
     }
 
@@ -116,6 +119,11 @@ public class ArrayBag<T> implements BagInterface<T> {
     public int getFrequencyOf(T anEntry) {
         return 0;
 
+    }
+
+    @Override
+    public int findIndex(T anEntry) {
+        return 0;
     }
 
     @Override

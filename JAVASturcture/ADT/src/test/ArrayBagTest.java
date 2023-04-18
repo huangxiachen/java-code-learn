@@ -2,7 +2,8 @@ package test;
 
 import function.bag.entities.ArrayBag;
 import function.inter.BagInterface;
-import org.junit.Test;
+import org.testng.annotations.Test;
+
 
 import java.util.ArrayList;
 import java.util.Collection;

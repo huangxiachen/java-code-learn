@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chx.dao.OrderMapper">
+    <resultMap id="orderMap" type="com.chx.pojo.Order">
+        <id property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="orderType" column="order_type"/>
+        <result property="pnum" column="pnum"/>
+        <result property="cashier" column="cashier"/>
+        <result property="doorId" column="door_id"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="payType" column="pay_type"/>
+        <result property="price" column="price"/>
+        <association property="door"
+                     javaType="com.chx.pojo.Door">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="tel" column="tel"/>
+            <result property="addr" column="addr"/>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,door_id,order_no,
+        order_type,pnum,cashier,
+        order_time,pay_time,pay_type,
+        price
+    </sql>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chx.pojo.Order" useGeneratedKeys="true">
+        insert into tb_order
+        ( id,door_id,order_no
+        ,order_type,pnum,cashier
+        ,order_time,pay_time,pay_type
+        ,price)
+        values (#{id,jdbcType=INTEGER},#{doorId,jdbcType=INTEGER},#{orderNo,jdbcType=VARCHAR}
+               ,#{orderType,jdbcType=VARCHAR},#{pnum,jdbcType=INTEGER},#{cashier,jdbcType=VARCHAR}
+               ,#{orderTime,jdbcType=TIMESTAMP},#{payTime,jdbcType=TIMESTAMP},#{payType,jdbcType=VARCHAR}
+               ,#{price,jdbcType=DOUBLE})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chx.pojo.Order" useGeneratedKeys="true">
+        insert into tb_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="doorId != null">door_id,</if>
+            <if test="orderNo != null">order_no,</if>
+            <if test="orderType != null">order_type,</if>
+            <if test="pnum != null">pnum,</if>
+            <if test="cashier != null">cashier,</if>
+            <if test="orderTime != null">order_time,</if>
+            <if test="payTime != null">pay_time,</if>
+            <if test="payType != null">pay_type,</if>
+            <if test="price != null">price,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=INTEGER},</if>
+            <if test="doorId != null">#{doorId,jdbcType=INTEGER},</if>
+            <if test="orderNo != null">#{orderNo,jdbcType=VARCHAR},</if>
+            <if test="orderType != null">#{orderType,jdbcType=VARCHAR},</if>
+            <if test="pnum != null">#{pnum,jdbcType=INTEGER},</if>
+            <if test="cashier != null">#{cashier,jdbcType=VARCHAR},</if>
+            <if test="orderTime != null">#{orderTime,jdbcType=TIMESTAMP},</if>
+            <if test="payTime != null">#{payTime,jdbcType=TIMESTAMP},</if>
+            <if test="payType != null">#{payType,jdbcType=VARCHAR},</if>
+            <if test="price != null">#{price,jdbcType=DOUBLE},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chx.pojo.Order">
+        update tb_order
+        <set>
+            <if test="doorId != null">
+                door_id = #{doorId,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderType != null">
+                order_type = #{orderType,jdbcType=VARCHAR},
+            </if>
+            <if test="pnum != null">
+                pnum = #{pnum,jdbcType=INTEGER},
+            </if>
+            <if test="cashier != null">
+                cashier = #{cashier,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chx.pojo.Order">
+        update tb_order
+        set
+            door_id =  #{doorId,jdbcType=INTEGER},
+            order_no =  #{orderNo,jdbcType=VARCHAR},
+            order_type =  #{orderType,jdbcType=VARCHAR},
+            pnum =  #{pnum,jdbcType=INTEGER},
+            cashier =  #{cashier,jdbcType=VARCHAR},
+            order_time =  #{orderTime,jdbcType=TIMESTAMP},
+            pay_time =  #{payTime,jdbcType=TIMESTAMP},
+            pay_type =  #{payType,jdbcType=VARCHAR},
+            price =  #{price,jdbcType=DOUBLE}
+        where   id = #{id,jdbcType=INTEGER}
+    </update>
+    <!-- 1、根据订单id查询门店信息  -->
+    <select id="getDoorByOrderId" resultMap="orderMap">
+        select * from tb_order o, tb_door d where o.door_id = d.id and
+        o.id = #{id}
+    </select>
+    <select id="list" resultMap="orderMap">
+        select * from tb_order o, tb_door d where o.door_id = d.id
+    </select>
+
+
+
+</mapper>
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chx.dao.DoorMapper">
+    <resultMap id="BaseResultMap" type="com.chx.pojo.Door">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <collection property="orders" resultMap="MyOrderMap" />
+    </resultMap>
+
+    <resultMap id="MyOrderMap" type="com.chx.pojo.Order">
+        <id property="orderNo" column="order_no"/>
+        <result property="orderType" column="order_type"/>
+        <result property="pnum" column="pnum"/>
+        <result property="cashier" column="cashier"/>
+        <result property="doorId" column="door_id"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="payType" column="pay_type"/>
+        <result property="price" column="price"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,name,tel,
+        addr
+    </sql>
+
+    <select id="list" resultMap="BaseResultMap">
+        select * from tb_door  d left join tb_order o on  d.id = o.door_id
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_door
+        where  id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_door
+        where  id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.chx.pojo.Door" useGeneratedKeys="true">
+        insert into tb_door
+        ( id,name,tel
+        ,addr)
+        values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR}
+               ,#{addr,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.chx.pojo.Door" useGeneratedKeys="true">
+        insert into tb_door
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="tel != null">tel,</if>
+            <if test="addr != null">addr,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=INTEGER},</if>
+            <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+            <if test="tel != null">#{tel,jdbcType=VARCHAR},</if>
+            <if test="addr != null">#{addr,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chx.pojo.Door">
+        update tb_door
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                addr = #{addr,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chx.pojo.Door">
+        update tb_door
+        set
+            name =  #{name,jdbcType=VARCHAR},
+            tel =  #{tel,jdbcType=VARCHAR},
+            addr =  #{addr,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -54,6 +54,14 @@ public interface BagInterface<T> {
      */
     public int getFrequencyOf(T anEntry);
 
+    /**
+     * 根据给出的元素名字，返回元素在包的位置
+     * @param anEntry
+     * @return index
+     */
+    public int findIndex(T anEntry);
+
+
 
     /**
      * Tests whether this bag contains a given entry
@@ -61,6 +69,7 @@ public interface BagInterface<T> {
      * @return True if the bag contains anEntry,or false if not
      */
     public boolean contains(T anEntry);
+
 
     /**Retrieves all entries that are in this bag
      * @return  A newly allocated array of all the entries in the bag
