@@ -26,7 +26,7 @@
 <body>
 	<h2>门店管理</h2>
 	<div id="add-door">
-		<a href="door_add" target="rightFrame">新增门店</a>
+		<a href="${pageContext.request.contextPath}/door/addPage" target="rightFrame">新增门店</a>
 	</div>
 	<hr/>
 	<table border="1">
@@ -46,9 +46,9 @@
 			<td>${ door.tel }</td>
 			<td>${ door.addr }</td>
 			<td>
-				<a href="doorDelete?id=${ door.id }">删除</a>
+				<a href="${pageContext.request.contextPath}/door/delete?id=${ door.id }">删除</a>
 				|
-				<a href="doorInfo?id=${ door.id }">修改</a>
+				<a href="${pageContext.request.contextPath}/door/updatePage?id=${ door.id }">修改</a>
 			</td>
 		</tr>
 	</c:forEach>	

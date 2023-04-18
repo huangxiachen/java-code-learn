@@ -22,7 +22,7 @@
 <body>
 	<h2>新增门店</h2>
 	<hr/>
-	<form action="doorAdd" method="POST">
+	<form action="${pageContext.request.contextPath}/door/updateOrAdd" method="POST">
 		<table border="1">
 			<tr>
 				<td width="30%">门店名称</td>

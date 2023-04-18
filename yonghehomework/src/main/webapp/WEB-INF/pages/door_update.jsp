@@ -22,7 +22,7 @@
 <body>
 	<h2>修改门店</h2>
 	<hr/>
-	<form action="doorUpdate" method="POST">
+	<form action="${pageContext.request.contextPath}/door/updateOrAdd" method="POST">
 		<!-- hidden隐藏域,在提交表单时连door.id一起提交 -->
 		<input type="hidden" name="id" value="${ door.id }"/>
 		<table border="1">

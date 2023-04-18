@@ -14,13 +14,13 @@ public interface DoorMapper {
 
     List<Door> list();
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Door record);
 
     int insertSelective(Door record);
 
-    Door selectByPrimaryKey(Long id);
+    Door selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Door record);
 
