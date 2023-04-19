@@ -5,10 +5,8 @@
 	<meta charset="utf-8"/>
 </head>
 <body>
-		<iframe src ="_top" >
-		</iframe>
-		<iframe src ="_left" scrolling="yes">
-		</iframe>
+		<jsp:include page="_top.jsp"/>
+		<jsp:include page="_left.jsp"/>
 
 		<iframe name="rightFrame" src ="_right" >
 		</iframe>

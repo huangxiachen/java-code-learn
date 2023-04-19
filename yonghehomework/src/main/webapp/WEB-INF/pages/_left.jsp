@@ -13,10 +13,12 @@
 </head>
 <body>
 	<div class="menu-bar">
-		<a href="${pageContext.request.contextPath}/door/list" target="rightFrame">› 门店管理</a>
+		<a  href="${pageContext.request.contextPath}/door/list" target="rightFrame">› 门店管理</a>
 	</div>
 	<div class="menu-bar">
-		<a href="${pageContext.request.contextPath}/order/list" target="rightFrame">› 订单管理</a>
+		<a  href="${pageContext.request.contextPath}/order/list" target="rightFrame">› 订单管理</a>
 	</div>
+
+
 </body>
 </html>
