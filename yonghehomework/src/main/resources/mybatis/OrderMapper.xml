@@ -115,6 +115,10 @@
             price =  #{price,jdbcType=DOUBLE}
         where   id = #{id,jdbcType=INTEGER}
     </update>
+    <delete id="deleteByPrimaryKey">
+        delete from tb_order
+        where  id = #{id,jdbcType=INTEGER}
+    </delete>
     <!-- 1、根据订单id查询门店信息  -->
     <select id="getDoorByOrderId" resultMap="orderMap">
         select * from tb_order o, tb_door d where o.door_id = d.id and

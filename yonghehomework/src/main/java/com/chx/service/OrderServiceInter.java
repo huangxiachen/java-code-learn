@@ -18,4 +18,6 @@ public interface OrderServiceInter {
     boolean save(Order order);
 
     boolean update(Order order);
+
+    boolean delete(Integer id);
 }

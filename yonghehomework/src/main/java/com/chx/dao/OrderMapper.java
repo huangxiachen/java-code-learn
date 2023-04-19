@@ -21,7 +21,7 @@ public interface OrderMapper {
     boolean save(Order order);
 
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Order record);
 

@@ -40,5 +40,10 @@ public class OrderServiceInterImpl implements OrderServiceInter {
         return orderMapper.updateByPrimaryKeySelective(order) > 0;
     }
 
+    @Override
+    public boolean delete(Integer id) {
+        return orderMapper.deleteByPrimaryKey(id) > 0;
+    }
+
 
 }

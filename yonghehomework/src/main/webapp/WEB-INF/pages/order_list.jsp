@@ -74,7 +74,7 @@
 <body>
 <h2>订单管理</h2>
 <div id="add-order">
-    <a href="${pageContext.request.contextPath}/order/add" target="rightFrame">新增订单</a>
+    <a href="${pageContext.request.contextPath}/order/addPage" target="rightFrame">新增订单</a>
 </div>
 <hr/>
 <table border="1">

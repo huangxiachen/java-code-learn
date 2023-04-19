@@ -123,4 +123,12 @@ public class OrderController {
         return modelAndView;
     }
 
+    @RequestMapping("delete")
+    public ModelAndView delete(@RequestParam Integer id){
+        orderServiceInter.delete(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/order/list");
+        return modelAndView;
+    }
+
 }
