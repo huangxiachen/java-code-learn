@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--        &lt;!&ndash;  基础配置bean &ndash;&gt;-->
+    <!--    <bean id="bookDao"  class="com.chx.dao.impl.BookDaoImpl"/>-->
+    <!--       &lt;!&ndash; Service与dao的关系   &ndash;&gt;-->
+    <!--    <bean id="bookDaoService"  class="com.chx.service.impl.BookServiceImpl">-->
+    <!--        <property name="bookDao" ref="bookDao"></property>-->
+    <!--    </bean>-->
+
+    <!--    别名配置，name可以配置多个，使用都好分号，空格隔开-->
+
+    <!--    <bean id="bookDaoService" name="service bookService" class="com.chx.service.impl.BookServiceImpl">-->
+    <!--        <property name="bookDao" ref="dao"></property>-->
+    <!--    </bean>-->
+    <!--    <bean id="bookDao" name="dao bookDaoImpl" class="com.chx.dao.impl.BookDaoImpl"/>-->
+    <!--     作用范围 scope：singleton 单例  prototype：非单例   -->
+
+    <!--    配置生命周期-->
+    <!--    <bean id="bookDao" name="dao bookDaoImpl" class="com.chx.dao.impl.BookDaoImpl" scope="prototype" init-method="init1" destroy-method="destroy" />-->
+    <bean id="bookDao" name="dao bookDaoImpl" class="com.chx.dao.impl.BookDaoImpl"/>
+    <bean id="bookService" class="com.chx.service.impl.BookServiceImpl">
+        <constructor-arg name="bookDao" ref="bookDao"/>
+    </bean>
+    <bean id="bookService1" class="com.chx.service.impl.BookServiceImpl">
+        <constructor-arg type="java.lang.String" value=" 安徒生童话故事"></constructor-arg>
+        <constructor-arg type="java.lang.Double" value="99.3"></constructor-arg>
+    </bean>
+    <bean id="userService" class="com.chx.service.impl.UserServiceImpl" autowire="byType">
+        <property name="arr">
+            <array>
+                <value>100</value>
+                <value>10</value>
+                <value>1</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>Mary</value>
+                <value>Mike</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>Mali</value>
+                <value>Mali</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="Mike" value="male"></entry>
+            </map>
+        </property>
+        <property name="pro">
+            <props>
+                <prop key="Mary">female</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

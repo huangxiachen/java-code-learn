@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+
+    <!--    &lt;!&ndash;    setter 方法注入&ndash;&gt;-->
+    <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+    <!--        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+    <!--        <property name="url" value="jdbc:mysql://localhost:3306/spring_db"/>-->
+    <!--        <property name="username" value="root"/>-->
+    <!--        <property name="password" value="root"/>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+    <!--        <property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+    <!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring_db" />-->
+    <!--        <property name="user" value="root" />-->
+    <!--        <property name="password" value="root" />-->
+    <!--    </bean>-->
+
+
+    <!--    开启context命名空间-->
+    <!--    使用context加载配置文件-->
+    <context:property-placeholder location="classpath*:jdbc.properties"/>
+
+
+    <!--    setter 方法注入   通过加载配置文件获取参数值-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+<!--    测试-->
+    <bean id="dataDao" class="com.chx.dao.impl.DataDaoImpl">
+        <property name="driver" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+    </bean>
+
+
+</beans>
