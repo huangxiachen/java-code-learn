@@ -20,7 +20,7 @@
 		display: inline-block;
 		width:80px;
 		height:80px;
-		background:url('e.png') no-repeat center;
+		background:url('../e.png') no-repeat center;
 		background-size:80px 80px;
 	}
 	span{ vertical-align: middle; }
@@ -55,11 +55,7 @@
 	window.onload = function(){
 		var a = document.getElementById("index");
 		a.onclick=function(){
-			window.location.href="http://localhost:8080";
-			/* 防止页面嵌套 */
-		    if (window.top != window.self) {
-		    	top.location.href = "http://localhost:8080";
-		    }
+			top.location.href="${pageContext.request.contextPath}/home";
 		};
 	}
 </script>
@@ -68,7 +64,7 @@
 <div id="err-500">
 	<div id="msg">
 		<span id="emoji"></span>
-		<span>对不起亲，服务器内部出错了哦...</span>
+		<span>${ msg }</span>
 	</div>
 	<div id="code">
 		500

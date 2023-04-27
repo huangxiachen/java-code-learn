@@ -1,6 +1,5 @@
 package com.chx.dao;
 
-import com.chx.pojo.Door;
 import com.chx.pojo.Order;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +17,6 @@ public interface OrderMapper {
 
     List<Order> list();
 
-    boolean save(Order order);
 
 
     int deleteByPrimaryKey(Integer id);
@@ -31,6 +29,7 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-    Order findOneOrderByPrimaryKey(Integer id);
+    int countByDoorId(@Param("id") Integer id);
 
+    int countByOrderNo(@Param("orderNo") String orderNo);
 }

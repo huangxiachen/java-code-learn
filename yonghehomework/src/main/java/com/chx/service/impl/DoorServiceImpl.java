@@ -1,6 +1,7 @@
 package com.chx.service.impl;
 
 import com.chx.dao.DoorMapper;
+import com.chx.dao.OrderMapper;
 import com.chx.pojo.Door;
 import com.chx.service.DoorServiceInter;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,19 @@ public class DoorServiceImpl implements DoorServiceInter {
     @Resource
     DoorMapper doorMapper;
 
+    @Resource
+    OrderMapper orderMapper;
+
     public List<Door> list() {
        return doorMapper.list();
     }
 
     @Override
     public boolean delete(Integer id) {
+        int count = orderMapper.countByDoorId(id);
+        if (count  > 0){
+            throw new RuntimeException("门店与其他订单相关联");
+        }
         return doorMapper.deleteByPrimaryKey(id) > 0;
     }
 

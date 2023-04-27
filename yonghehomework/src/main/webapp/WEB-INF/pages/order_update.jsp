@@ -113,7 +113,8 @@
         <tr>
             <td>订单编号</td>
             <td>
-                <input type="text" name="orderNo" value="${ order.orderNo }"/>
+                <span>${ order.orderNo }</span>
+<%--                <input type="text" name="orderNo" value=""/>--%>
             </td>
         </tr>
         <tr>

@@ -74,9 +74,9 @@
             <if test="doorId != null">
                 door_id = #{doorId,jdbcType=INTEGER},
             </if>
-            <if test="orderNo != null">
-                order_no = #{orderNo,jdbcType=VARCHAR},
-            </if>
+<!--            <if test="orderNo != null">-->
+<!--                order_no = #{orderNo,jdbcType=VARCHAR},-->
+<!--            </if>-->
             <if test="orderType != null">
                 order_type = #{orderType,jdbcType=VARCHAR},
             </if>
@@ -127,7 +127,14 @@
     <select id="list" resultMap="orderMap">
         select * from tb_order o, tb_door d where o.door_id = d.id
     </select>
+    <select id="countByDoorId" resultType="java.lang.Integer">
+        select count(*) from tb_order o where o.door_id = #{id}
 
+    </select>
+    <select id="countByOrderNo" resultType="java.lang.Integer">
+        select count(*) from tb_order o where o.order_no = #{orderNo}
+
+    </select>
 
 
 </mapper>

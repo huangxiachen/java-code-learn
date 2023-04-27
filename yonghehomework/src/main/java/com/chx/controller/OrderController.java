@@ -83,7 +83,7 @@ public class OrderController {
     public ModelAndView update(
             @RequestParam Integer id,
             @RequestParam Integer doorId,
-            @RequestParam String orderNo,
+//            @RequestParam String orderNo,
             @RequestParam String orderType,
             @RequestParam Integer pnum,
             @RequestParam String cashier,
@@ -96,7 +96,7 @@ public class OrderController {
         Order order = new Order();
         order.setId(id);
         order.setDoorId(doorId);
-        order.setOrderNo(orderNo);
+//        order.setOrderNo(orderNo);
         order.setOrderType(orderType);
         order.setPnum(pnum);
         order.setCashier(cashier);
