@@ -37,6 +37,11 @@
         from tb_door
         where  id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="count" resultType="java.lang.Integer">
+        select
+        count(*)
+        from tb_door where name = #{name} and addr = #{addr}
+ </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from tb_door

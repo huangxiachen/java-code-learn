@@ -31,7 +31,9 @@ public class OrderController {
     @Resource(name = "DoorServiceImpl")
     DoorServiceImpl doorService;
 
-
+    /**
+     * 订单列表
+     */
     @RequestMapping("list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
@@ -40,7 +42,9 @@ public class OrderController {
         modelAndView.addObject("orderList",list);
         return modelAndView;
     }
-
+    /**
+     * 订单添加页面
+     */
     @RequestMapping("addPage")
     public ModelAndView addPage(){
         ModelAndView modelAndView = new ModelAndView();
@@ -49,7 +53,9 @@ public class OrderController {
         modelAndView.addObject("doorList",doors);
         return modelAndView;
     }
-
+    /**
+     * 订单新增
+     */
     @RequestMapping("add")
     public ModelAndView add(
             @RequestParam Integer doorId,
@@ -75,10 +81,13 @@ public class OrderController {
         boolean success = orderServiceInter.save(order);
 
         ModelAndView modelAndView = new ModelAndView();
+        //返回列表页面
         modelAndView.setViewName("redirect:/order/list");
         return modelAndView;
     }
-
+    /**
+     * 订单更新
+     */
     @RequestMapping("update")
     public ModelAndView update(
             @RequestParam Integer id,
@@ -108,10 +117,13 @@ public class OrderController {
         orderServiceInter.update(order);
 
         ModelAndView modelAndView = new ModelAndView();
+        //返回列表页面
         modelAndView.setViewName("redirect:/order/list");
         return modelAndView;
     }
-
+    /**
+     * 订单更新页面
+     */
     @RequestMapping("updatePage")
     public ModelAndView updatePage(@RequestParam Integer id){
         Order order = orderServiceInter.findOneOrder(id);
@@ -122,11 +134,14 @@ public class OrderController {
         modelAndView.addObject("doorList",doors);
         return modelAndView;
     }
-
+    /**
+     * 订单删除页面
+     */
     @RequestMapping("delete")
     public ModelAndView delete(@RequestParam Integer id){
         orderServiceInter.delete(id);
         ModelAndView modelAndView = new ModelAndView();
+        //返回列表页面
         modelAndView.setViewName("redirect:/order/list");
         return modelAndView;
     }

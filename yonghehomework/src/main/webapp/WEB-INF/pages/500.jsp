@@ -66,9 +66,9 @@
 		<span id="emoji"></span>
 		<span>${ msg }</span>
 	</div>
-	<div id="code">
-		500
-	</div>
+<%--	<div id="code">--%>
+<%--		500--%>
+<%--	</div>--%>
 	<div id="youcan">
 		您还可以:
 		<a id="index">返回首页</a>

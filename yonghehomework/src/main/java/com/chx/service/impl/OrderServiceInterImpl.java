@@ -32,9 +32,10 @@ public class OrderServiceInterImpl implements OrderServiceInter {
 
     @Override
     public boolean save(Order order) {
+        //根据订单no去重
         int count = orderMapper.countByOrderNo(order.getOrderNo());
         if (count > 0){
-            throw new RuntimeException("订单号不能重复");
+            throw new RuntimeException("保存失败，订单号不能重复");
         }
         return orderMapper.insertSelective(order) > 0;
     }

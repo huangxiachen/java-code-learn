@@ -19,7 +19,11 @@ export default {
     return {
       swiperOption: {
         pagination: '.swiper-pagination',
-        loop: true
+        speed: 300,
+        loop: true,
+        autoplay: {
+          delay: 10000
+        }
       }
     }
   },

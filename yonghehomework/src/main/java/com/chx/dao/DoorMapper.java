@@ -25,4 +25,6 @@ public interface DoorMapper {
     int updateByPrimaryKeySelective(Door record);
 
     int updateByPrimaryKey(Door record);
+
+    int count(Door dc);
 }

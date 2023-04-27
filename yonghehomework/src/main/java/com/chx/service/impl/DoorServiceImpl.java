@@ -30,9 +30,10 @@ public class DoorServiceImpl implements DoorServiceInter {
 
     @Override
     public boolean delete(Integer id) {
+        //有关联的不能删
         int count = orderMapper.countByDoorId(id);
         if (count  > 0){
-            throw new RuntimeException("门店与其他订单相关联");
+            throw new RuntimeException("删除失败，门店与其他订单相关联");
         }
         return doorMapper.deleteByPrimaryKey(id) > 0;
     }
@@ -44,9 +45,19 @@ public class DoorServiceImpl implements DoorServiceInter {
 
     @Override
     public boolean updateOrAdd(Door door) {
+
+        //根据有没有传主键来判断是更新还是新增
         if (door.getId() != null){
             return doorMapper.updateByPrimaryKeySelective(door) > 0;
         }else {
+            //根据名称和地址去重
+            Door dc = new Door();
+            dc.setName(door.getName());
+            dc.setAddr(door.getAddr());
+            int count = doorMapper.count(dc);
+            if (count > 0){
+                throw new RuntimeException("当前地点门店已经存在,不能添加一个已存在的门店");
+            }
             return doorMapper.insertSelective(door) > 0;
         }
     }
