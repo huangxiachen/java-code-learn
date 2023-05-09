@@ -23,6 +23,7 @@ public class DoorController {
     @RequestMapping("list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
+        //指定视图（显示结果）
         modelAndView.setViewName("door_list");
         modelAndView.addObject("list",doorServiceInter.list());
         return modelAndView;

@@ -27,6 +27,7 @@
         addr
     </sql>
 
+<!-- 查询全部-->
     <select id="list" resultMap="BaseResultMap">
         select * from tb_door  d left join tb_order o on  d.id = o.door_id
     </select>

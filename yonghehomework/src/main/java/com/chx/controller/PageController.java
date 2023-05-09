@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 
-    //直接访问页面
+    //访问对应页面的路径，有了这个方法才能访问配置好的视图
     @RequestMapping("/{pageName}")
     public String page(@PathVariable String pageName) {
         return pageName;

@@ -17,9 +17,10 @@
 	}
 </style>
 <body>
+		<%--把顶部和菜单栏的html引入进来--%>
 		<jsp:include page="_top.jsp"/>
 		<jsp:include page="_left.jsp"/>
-
+		<%--显示内容区域	--%>
 		<iframe class="content" name="rightFrame" src ="_right" >
 		</iframe>
 </body>
