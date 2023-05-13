@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  a:hover{
+      text-decoration: none;
+  }
+  em{
+      font-style: normal;
+  }
+  li{
+    list-style: none;
+  }
+  button,input{
+    outline: none;
+    border: 0;
+  }
+ 

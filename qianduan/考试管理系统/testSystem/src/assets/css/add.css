@@ -1,0 +1,51 @@
+.addclass{
+    padding-top: 40px;
+}
+.addclass form{
+    text-align: center;
+    width: 450px;
+    padding-bottom: 20px;
+    margin: auto;
+    background: rgb(226, 217, 205);
+    border-radius: 10px;
+}
+
+.addclass input{
+    float: left;
+    width: 270px;
+    padding: 0 10px;
+    height: 40px;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+}
+
+.addclass div{
+    width: 400px;
+    height: 40px;
+    margin-top: 10px;
+    color: #666;
+    
+}
+.addclass span{
+    float: left;
+    width: 80px;
+    line-height: 40px;
+    text-align: center;
+}
+
+
+.addclass h3{
+    text-align: center;
+    padding-top: 20px;
+    color: #333;
+}
+.addclass button{
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+    outline: none;
+    border: 0;
+    color: #666;
+    border-radius: 5px;
+}
