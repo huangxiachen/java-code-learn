@@ -12,6 +12,7 @@ spring:
     view:
       prefix: /views/
       suffix: .jsp
+
 mybatis-plus:
   type-aliases-package: com.chx.pojo
   mapper-locations: classpath:/mapper/*.xml

@@ -1,8 +1,6 @@
 package com.chx.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chx.pojo.Item;
 import com.chx.service.ItemService;
@@ -23,9 +21,9 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 
     @Override
     public EasyUITable queryByPage(Integer page, Integer rows) {
-        int total = this.baseMapper.selectCount(new QueryWrapper<>());
-        int start = (page-1)* rows;
-        List<Item> itemList = itemMapper.queryByPage(start,rows);
+        int total = this.baseMapper.selectCount(new QueryWrapper<>()); //查询总数
+        int start = (page-1)* rows; //计算数据库里面的起始行数
+        List<Item> itemList = itemMapper.queryByPage(start,rows); //分页使用 limit 查询具体商品
 
 
         return new EasyUITable(total,itemList);

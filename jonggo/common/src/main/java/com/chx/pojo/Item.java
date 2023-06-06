@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Item extends BasePojo{
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Long id;
     private String title;
     private String sellPoint;
     private Long price;
