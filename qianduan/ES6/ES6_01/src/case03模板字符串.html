@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板字符串</title>
+</head>
+<style>
+    table {
+        margin: 50px auto;
+        width: 500px;
+        text-align: center;
+    }
+
+    table,
+    th,
+    td {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <h1>case03模板字符串.html</h1>
+
+    <table>
+        <tr>
+            <th>手机名字</th>
+            <th>手机价格</th>
+            <th>手机颜色</th>
+            <th>发布时间</th>
+        </tr>
+    </table>
+</body>
+<script>
+    const phones = [
+        {
+            name:'iphone13',
+            color:'blue',
+            price:'4999',
+            time:'2021'
+        },
+        {
+            name:'iphone14',
+            color:'blue',
+            price:'4999',
+            time:'2021'
+        },
+        {
+            name:'iphone15',
+            color:'blue',
+            price:'4999',
+            time:'2021'
+        }
+    ];
+    let items = document.querySelector("table");
+    // let str = ` <tr>
+    //         <th>手机名字</th>
+    //         <th>手机价格</th>
+    //         <th>手机颜色</th>
+    //         <th>发布时间</th>
+    //     </tr>`;
+    // phones.forEach(element => {
+    //     console.log(element);
+    //     let {name,color,price,time} = element;
+    //     str += `<tr>
+    //         <td>${name}</td>n
+    //         <td>${color}</td>
+    //         <td>${price}</td>
+    //         <td>${time}</td>
+    //     </tr>`
+    //     items.innerHTML = str;
+        
+    // });
+</script>
+</html>

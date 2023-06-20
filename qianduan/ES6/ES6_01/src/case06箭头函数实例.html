@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>case06箭头函数实例</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        margin: 0 20px;
+        background: blue;
+        float: left;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        line-height: 100px;
+    }
+</style>
+
+<body>
+    <div>1</div>
+    <div class="div2">2</div>
+
+</body>
+<script>
+    //获取元素
+    let div = document.querySelector('div');
+    console.log(div);
+    //点击div后让div变色(之前的解决方案)
+    div.addEventListener("click", function () {
+        //保存this的值
+        let _this = this;
+        //定时器
+        setTimeout(function () {
+            //修改背景颜色
+            _this.style.background = 'pink';
+
+        }, 200)
+
+    });
+
+    //获取元素
+    let div2 = document.getElementsByClassName('div2');
+    console.log(div2);
+    //点击div后让div变色(使用箭头函数)
+    div2[0].addEventListener("click", function () {
+
+        //定时器
+        setTimeout(() => {
+            //修改背景颜色
+            this.style.background = 'pink';
+
+        }, 200)
+
+    });
+
+
+    //实例2声明一个数组，从数组中返回偶数(之前的做法)
+    const arr = [1, 6, 9, 25, 10, 100]
+    const result = arr.filter(function (item) {
+        if(item % 2 ===0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    });
+    console.log(result);
+    //实例2声明一个数组，从数组中返回偶数(之前的做法)
+    const result2 = arr.filter(item =>item % 2 === 0);
+    console.log(result2);
+
+    //箭头函数适合与this无关的回调，定时器，数组回调
+    //箭头函数不适合与this有关的回调，事件回调
+
+
+</script>
+
+</html>

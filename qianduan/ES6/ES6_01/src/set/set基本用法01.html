@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set基本用法</title>
+</head>
+
+<body>
+    <script>
+        //set它类似于数组，但是成员的值都是唯 的，没有重复，本身是一个构造函数，用来生成 Set 数据结构
+        //set用法
+        //1.可以添加元素，可以添加数值，数组，对象，字符串
+        //2.可以对数组去重，求几个数组交，并，差集
+        //注意点：
+        //1.在set内部：两个NaN只能添加一个，但两个空对象被视为不精确相等，所以它们被视为两个值。
+        //2.两个对象也是不相等的
+
+        //1.可以添加元素，可以添加数值，数组，对象，字符串
+        const set = new Set();
+        //1.1添加数值类型
+        set.add(1);
+        set.add(1.1);
+        set.add(true);
+        //2.1添加数组
+        set.add(["you", "and", "me"]);
+        //3.1添加字符串
+        set.add("you are beautiful");
+        //4.1添加对象
+        const object = {
+            name: 'xiaoMing',
+            age: 18,
+            fun() {
+                console.log("I'm a student!")
+            }
+        }
+        set.add(object);
+
+        //遍历
+        set.forEach(item => console.log(item));
+
+        //2.可以对数组去重，求几个数组交，并，差集
+        //2.1对数组去重
+        const arr1 = [1, 1, 1, 2, 3, 4, 4, 5, 5, 6, 7];
+        const set1 = new Set(arr1);
+        const arrNew = [...set1];
+        console.log(arrNew);//[1, 2, 3, 4, 5, 6, 7]
+
+        //2.2求数组交集
+        const arrA = [1, 2, 3, 4, 5, 6];
+        const arrB = [1, 3, 6, 8, 9, 10];
+        const intersect = new Set([...arrA].filter(x =>arrB.includes(x)));
+        console.log(intersect);
+
+        //2.3求数组并集
+        const union = new Set([...arrA,...arrB]);
+        console.log(union);
+
+        //2.4求数组差集
+        const difference = new Set([...arrA].filter(x => !arrB.includes(x))); 
+        console.log(difference);
+
+        //3.Set 实例的属性和方法
+        /**
+            1.Set 结构的实例有以下属性
+                1)Set. prototype. constructor 构造函数，默认就是 Set 函数。
+                2)Set . prototype . size ：返回 Set 的元素总数
+            2.Set 实例的方法分为两大类：操作方法（用于操作数据〉和遍历方法（用于遍历元素〉。
+                2.1操作方法：
+                    1)add (value ）：添加某个值，返回 Set 结构本身。
+                    2)delete(value ）：删除某个值，返回一个布尔值，表示删除是否成功。
+                    3)has (value ）：返回一个布尔值，表示参数是否为 Se 的成员。
+                    4)clear （）： 清除所有成员，没有返回值。
+                2.2遍历方法(需要特别指出的是， Set 的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set
+                保存 个回调函数列表，调用时就能保证按照添加顺序调用。)
+                    1）keys 返回键名的遍历器。
+                    2）va lues （）：返回键值的遍历器
+                    3）entries （）：返回键值对的遍历器
+                    4）forEach （）：使用回调函数遍历每个成员
+            3.Array.from 方法可以将 Set 结构转为数组。
+        **/
+        
+
+        const setExample = new Set(); 
+        //2.1操作方法：
+        //1)add (value ）：添加某个值，返回 Set 结构本身。
+        setExample.add(123);
+        setExample.add(456);
+        console.log(setExample);
+        //2)delete(value ）：删除某个值，返回一个布尔值，表示删除是否成功。
+        let result = setExample.delete(123);
+        console.log(result);
+        //3)has (value ）：返回一个布尔值，表示参数是否为 Set 的成员。
+        result = setExample.has(123);
+        console.log(result);
+        //4)clear （）： 清除所有成员，没有返回值。
+        setExample.clear();
+        console.log(setExample.size);
+
+        //3.Array.from 方法可以将 Set 结构转为数组。
+        const items = new Set([1, 2, 3, 4, 5]); 
+        const array = Array.from(items) ; 
+        console.log(array);
+        //这就提供了一种去除数组的重复元素的方法。
+        function dedupe(array) { 
+            return Array.from(new Set(array)); 
+        }
+        const arrfrom = dedupe([11,2,3,44,5,5,6]);
+        console.log(arrfrom);
+        
+
+        /**2.2遍历方法(需要特别指出的是， Set 的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set
+            保存 个回调函数列表，调用时就能保证按照添加顺序调用。)**/
+
+        //1）keys 返回键名的遍历器。
+        /**
+         由于Set 结构没有键名，只有键值（或者说键名和键值是同一个值），
+         所以 keys 方法和 values法的行为完全一致。
+        **/
+       let setFor = new Set(['red','green ','blue']);
+       for (let item of setFor.keys()) {
+            console.log(item);
+       }
+      
+        //2）values （）：返回键值的遍历器
+        for (let item of setFor.values()) {
+            console.log(item);
+       }
+        //3）entries （）：返回键值对的遍历器
+        for (let item of setFor.entries()) {
+            console.log(item);
+       }
+        //4）forEach()：使用回调函数遍历每个成员
+        setFor.forEach(item => console.log(item));
+
+        //注意：Set 结构的实例默认可遍历 其默认遍历器生成函数就是它的 values 方法
+        //可以省略 values 方法，直接用 for ... of 循环遍历 Set
+        console.log(Set.prototype[Symbol.iterator] === Set.prototype.values);
+       for (let item of setFor) {
+            console.log(item);
+       }
+        
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

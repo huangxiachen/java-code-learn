@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>case07test参数</title>
+</head>
+<body>
+    <script>
+        function date(...args) {
+            console.log(args);
+        };
+        date("阿娇","白芷");
+
+        //rest参数必须放在最后面
+
+        function fun (a,b,c,...args){
+            console.log(a);
+            console.log(b);
+            console.log(c);
+            console.log(args);
+
+        }
+        fun(1,2,3,4,5,6,7,8);
+    </script>
+</body>
+</html>
