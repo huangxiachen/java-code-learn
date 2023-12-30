@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- MyBatis全局配置文件 -->
+<configuration>
+
+    <!-- 引入配置文件资源 -->
+    <properties resource="db.properties" />
+
+    <!-- 配置别名 -->
+    <typeAliases>
+        <!-- 给某个具体的类设置别名 -->
+        <!--<typeAlias type="com.hbnu.pojo.User" alias="_User" />-->
+
+        <!-- 给某个包下所有的类进行别名设置，设置后的别名为实体类类名 -->
+        <package name="com.hbnu.pojo"/>
+    </typeAliases>
+
+    <!-- environments标签可以配置多个环境，比如开发环境、测试环境、生产环境，但是同一时刻只能使用一个环境，具体使用哪个环境，通过default属性决定
+    default属性值表明使用的是哪个具体的环境
+    -->
+    <environments default="develop">
+        <!-- 具体环境配置信息 id属性值表示当前环境的标识符 -->
+        <environment id="develop">
+            <!-- transactionManager表示事务管理配置，type属性值有以下俩个
+            JDBC:属性值为JDBC表示开启自动事务管理机制，通过JDBC数据源管理事务范围，推荐使用
+            MANAGER:该属性值表示手动开启事务管理
+            -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- 数据源，type属性值有以下3个
+            JNDI:已过时，不使用
+            POOLED:表示使用JDBC数据库连接池
+            UNPOOLED:表示不使用数据库连接池
+            -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- mappers表示映射配置文件信息，可以引入多个映射配置文件 -->
+    <mappers>
+        <mapper resource="UserMapper.xml" />
+
+        <mapper resource="ClassesMapper.xml" />
+
+        <mapper class="com.hbnu.dao.UserMapper" />
+    </mappers>
+</configuration>

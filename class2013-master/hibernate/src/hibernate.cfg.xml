@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 引入hibernate核心配置文件约束 -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 1、数据库配置信息 必需 -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/class2013?serverTimezone=GMT&amp;useSSL=false&amp;characterEncoding=utf-8</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">chendikai</property>
+
+        <!-- 2、hibernate配置信息 非必需 -->
+        <!-- 显示hibernate底层SQL语句 -->
+        <property name="show_sql">true</property>
+        <!-- 格式化hibernate底层生成的SQL语句 -->
+        <property name="format_sql">true</property>
+        <!-- 配置数据库方言 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
+        <!-- hibernate自动创建表配置，如果数据库表已存在，则更新原表，如果数据库表不存在，则自动创建新表 -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- 设置事务的隔离级别（1~4，数组越低，隔离级别越低） -->
+        <property name="hibernate.connection.isolation">4</property>
+        <!-- 将session对象和本地线程进行绑定，保证在多人开发通过一个hibernate项目时，session的单线程 -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- 3、映射关系配置文件信息 必需 -->
+        <mapping resource="com/hbnu/config/user.hbm.xml" />
+        <mapping resource="com/hbnu/config/customer.hbm.xml" />
+        <mapping resource="com/hbnu/config/linkman.hbm.xml" />
+        <mapping resource="com/hbnu/config/player.hbm.xml" />
+        <mapping resource="com/hbnu/config/role.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

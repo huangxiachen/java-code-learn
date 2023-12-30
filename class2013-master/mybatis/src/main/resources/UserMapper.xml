@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 表示当前配置文件为映射配置文件，其中namespace属性不可省略，MyBatis执行SQL时，是通过namespace + id定位到具体的SQL
+ 多个映射配置文件的namespace属性值不能重复 -->
+<mapper namespace="UserMapper">
+
+    <!-- 对于数据库的CRUD操作，都有对应的标签，比如select标签、insert标签、update标签、delete标签
+    对于查询操作，select标签中有resultType属性，该属性表示查询结果类型，常见类型（Integer、String）
+    如果查询结果为List集合类型，则resultType属性值为List集合中的泛型类型
+    -->
+    <!-- 查询tb_user表中的所有数据 -->
+    <select id="findAll" resultType="User">
+        select * from tb_user
+    </select>
+
+    <insert id="addData">
+        insert into tb_user(name, addr) values('暴打小学生', '湖师')
+    </insert>
+
+    <update id="updateData">
+        update tb_user set name = '暴虐幼儿园小崽子' where id = 4
+    </update>
+
+    <delete id="deleteData">
+        delete from tb_user where id = 4
+    </delete>
+
+    <select id="findById" resultType="User">
+        select * from tb_user where id = 3
+    </select>
+
+    <insert id="addData2">
+        insert into tb_user(name, addr) values(#{name}, #{addr})
+    </insert>
+
+    <update id="updateData2">
+        update tb_user set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteData2">
+        delete from tb_user where id = #{id}
+    </delete>
+
+    <select id="findById2" resultType="User">
+        select * from tb_user where id = #{id}
+    </select>
+
+    <select id="findByColumn" resultType="User">
+        select ${cols} from tb_user
+    </select>
+
+    <resultMap id="userResult" type="com.hbnu.pojo.User">
+        <id property="id" column="id" />
+        <result property="name" column="username" />
+        <result property="addr" column="address" />
+        <result property="salary" column="salary" />
+    </resultMap>
+
+    <select id="findAll4" resultMap="userResult">
+        select * from tb_user
+    </select>
+
+    <!-- 动态SQL -->
+    <select id="findAll5" resultMap="userResult">
+        select * from tb_user
+        <where>
+            <if test="minSalary != null">
+                salary > #{minSalary}
+            </if>
+            <if test="maxSalary != null">
+                and salary <![CDATA[<]]> #{maxSalary}
+            </if>
+        </where>
+    </select>
+
+    <!-- 动态SQL
+    update tb_user set username = #{name}, address = #{addr}, salary = #{salary} where id = #{id}
+    -->
+    <update id="updateData5">
+        update tb_user
+        <set>
+            <if test="name != null">
+                username = #{name},
+            </if>
+            <if test="addr != null">
+                address = #{addr},
+            </if>
+            <if test="salary != null">
+                salary = #{salary}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 动态SQL
+    select * from tb_user where username in('zhangsan', 'lisi')
+    -->
+    <select id="findAll6" resultMap="userResult">
+        select * from tb_user where username in
+        <foreach collection="array" open="(" close=")" separator="," item="name">
+            #{name}
+        </foreach>
+    </select>
+</mapper>

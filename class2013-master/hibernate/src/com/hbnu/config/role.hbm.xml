@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 引入映射关系配置文件约束 -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hbnu.pojo.Role" table="tb_role">
+        <id name="rid">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="name" />
+        <property name="description" />
+
+        <set name="players" table="tb_pr">
+            <key column="rid"></key>
+            <many-to-many class="com.hbnu.pojo.Player" column="pid" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ClassesMapper">
+    <!-- 1、根据老师id查询班级信息
+     select * from tb_classes c, tb_teacher t
+     where c.cid = t.tid
+     and t.tid = #{t.tid}
+     -->
+    <select id="getClassesByTeacherId" resultMap="classesResult">
+        select * from tb_classes c, tb_teacher t
+        where c.cid = t.tid
+        and t.tid = #{t.tid}
+    </select>
+    <resultMap id="classesResult" type="com.hbnu.pojo.Classes">
+        <id property="cid" column="cid" />
+        <result property="cname" column="cname" />
+        <association property="teacher" javaType="com.hbnu.pojo.Teacher">
+            <id property="tid" column="tid" />
+            <result property="tname" column="tname" />
+        </association>
+    </resultMap>
+
+    <!-- 2、根据班级id获取老师信息 -->
+    <select id="getTeacherByClassesId" resultMap="teacherResult">
+        select * from tb_classes c, tb_teacher t
+        where c.cid = t.tid
+        and c.cid = #{c.cid}
+    </select>
+    <resultMap id="teacherResult" type="com.hbnu.pojo.Teacher">
+        <id property="tid" column="tid" />
+        <result property="tname" column="tname" />
+        <association property="classes" javaType="com.hbnu.pojo.Classes">
+            <id property="cid" column="cid" />
+            <result property="cname" column="cname" />
+        </association>
+    </resultMap>
+
+    <!-- 3、根据老师id获取老师多带的班级信息(多对多) -->
+    <select id="getClassesByTeacherId2" resultMap="classesResult2">
+        select * from tb_classes c, tb_teacher t, tb_tc tc
+        where c.cid = tc.cid
+        and t.tid = tc.tid
+        and t.tid = #{t.tid}
+    </select>
+    <resultMap id="classesResult2" type="com.hbnu.pojo.Classes">
+        <id property="cid" column="cid" />
+        <result property="cname" column="cname" />
+        <collection property="teachers" javaType="com.hbnu.pojo.Teacher">
+            <id property="tid" column="tid" />
+            <result property="tname" column="tname" />
+        </collection>
+    </resultMap>
+</mapper>

@@ -1,0 +1,35 @@
+nav ul {
+    position: fixed;
+    list-style-type: none;
+    top:45px;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    height: 100%;
+    overflow: auto;
+}
+
+nav li a {
+    display: block;
+    color:#666;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+nav li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+nav li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+.content{
+    margin-left:15%;
+    padding:0 16px;
+    padding-top:50px;
+    color: #333;
+}
+
