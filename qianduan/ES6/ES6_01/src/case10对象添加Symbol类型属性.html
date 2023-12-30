@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>case10对象添加Symbol类型属性</title>
+</head>
+<body>
+    <script>
+        //想对象中添加方法，使用Symbol 可以解决同名冲突
+
+        let game = {
+            up(){
+                console.log("向上");
+            },
+            down(){
+                console.log("向下");
+            }
+
+        }
+        //声明一个对象
+        let methods = {
+            up:Symbol(),
+            down:Symbol()
+        }
+        game[methods.up] = function (){
+            console.log("我可以改变形状");
+        }
+        game[methods.down] = function (){
+            console.log("我可以快速下降");
+        }
+        console.log(game);
+
+        //给对象添加唯一的属性
+        let youxi = {
+            name:"狼人杀",
+            [Symbol('say')]:function(){
+                console.log("我可以说话");
+            },
+            [Symbol('zibao')]:function(){
+                console.log("我可以自爆");
+            },
+        }
+        console.log(youxi);
+    </script>
+    
+</body>
+</html>

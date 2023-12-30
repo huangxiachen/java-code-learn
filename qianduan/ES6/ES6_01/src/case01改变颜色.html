@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击方块切换颜色</title>
+</head>
+<style>
+    .item {
+        width: 100px;
+        height: 50px;
+        float: left;
+        margin: 0 15px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .change_color {
+        background: pink;
+    }
+</style>
+
+<body>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</body>
+<script>
+    //获取元素
+    let items = document.getElementsByClassName('item');
+    for (let i = 0; i < items.length; i++) {
+
+        items[i].onclick = function () {
+            //当前方块变色
+            items[i].classList.add('change_color');
+            //其他方块不变色
+            for (let j = 0; j < items.length; j++) {
+                if(j!=i){
+                    items[j].classList.remove('change_color');
+                }
+                
+            }
+
+        }
+
+    }
+
+</script>
+
+</html>

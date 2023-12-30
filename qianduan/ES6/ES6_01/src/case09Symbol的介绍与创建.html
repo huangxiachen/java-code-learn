@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>case09Symbol的介绍与创建</title>
+</head>
+<body>
+    <script>
+        //创建Symbol
+        let s = Symbol();
+        //表示独一无二的值，最大的用法是用来定义对象的唯一属性名。
+        let s2 = Symbol("妲己");
+        let s3 = Symbol("妲己");
+        console.log(s2===s3);//false
+
+        //Symbol.for创建
+        let s4 = Symbol.for("妲己");
+        let s5 = Symbol.for("妲己");
+        console.log(s4===s5);//true
+
+        //使用Symbol.for() 方法创建时，会将创建的Symbol存入一个全局的注册表中，在下次创建时，会首先从注册表中查找是否已有相同的值存在，如果没有，则创建；如果有，便不会创建重复的Symbol。
+
+        //Symbol不能与数据进行运算
+
+
+
+    </script>
+</body>
+</html>
